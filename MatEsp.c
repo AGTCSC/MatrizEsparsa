@@ -69,5 +69,71 @@ void insere (MatEsp* vetlin[], MatEsp* vetcol[], int valor, int lin, int col)
 					ant->pc  = nova;
 				}
 	}
-	printf("Coordenadas fora da matriz!")
+	printf("Coordenadas fora da matriz!");
+}
+
+void exibe (MatEsp* vetlin[])
+{
+	int i, j;
+	MatEsp* aux;
+	for(i = 0; i < nl; i++)
+	{
+		for(j = 0; j < nc; j++)
+		{
+			verificaOcupada(vetlin, i, j, &aux);
+			if(aux != NULL)
+				printf("%d ", aux->valor);
+			else
+				printf("0 ");
+		}
+		printf("\n");
+	}
+}
+
+void soma(MatEsp* vetlinA[], MatEsp* vetlinB[], MatEsp* vetlinC[], MatEsp* vetcolC[])
+{
+	int i, j, soma=0;
+	MatEsp* aux;
+	for(int i=0; i < nl; i++)
+	{
+		for(j = 0; j < nc; j++)
+		{
+			verificaOcupado(vetlinA, i, j, &aux1);
+			verificaOcupado(vetlinB, i, j, &aux2);
+			if(aux1->val != 0)
+				soma += aux->val;
+			if(aux2->val != 0)
+				soma += aux->val;
+			if(soma != 0)
+				insere(vetlinC, vetcolC, soma, i, j);
+		}
+	}
+}
+
+void mult(MatEsp* vetlinA, int linhaA, int colunaA, MatEsp* vetlinB, , int mB, int nB, MatEsp* vetlin, MatEsp* vetcol)
+{
+	int val, soma;
+	MatEsp* aux1, *aux2;
+	if(colunaA == linhaB)
+	{
+		for(int i=0; i < linhaA, i++)
+		{
+			for(int j=0; j < colunaB; j++)
+			{
+				soma = 0; val = 0;
+				for(int k=0; k < colunaA; k++)
+				{
+					verificaOcupado(vetlinA, i, k, &aux1);
+					verificaOcupado(vetlinB, k, j, &aux2);
+					if(aux1 != NULL && aux2 != NULL)
+						soma*= aux->val;
+					val+= soma;
+					
+				}
+				insere(vetlinC, vetcolC, i, j, val);
+			}
+		}
+	}
+	else
+		printf("Matrizes incompativeis\n");
 }
